@@ -1,18 +1,259 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Girlfriend's Day 🤍</title>
 
-    <title>Happy Girlfriend's Day ❤️</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-    <link rel="stylesheet" href="style.css">
+body{
+background:linear-gradient(180deg,#fdf4ff,#ffe4f3);
+overflow:hidden;
+height:100vh;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+#flowers{
+position:fixed;
+width:100%;
+height:100%;
+overflow:hidden;
+pointer-events:none;
+}
+
+.flower{
+position:absolute;
+top:-50px;
+font-size:24px;
+animation:fall linear infinite;
+opacity:.8;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-10vh) rotate(0deg);
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+.card{
+width:90%;
+max-width:420px;
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+h1{
+margin-bottom:10px;
+}
+
+input{
+width:180px;
+padding:12px;
+border:none;
+border-radius:12px;
+text-align:center;
+font-size:20px;
+margin:20px 0;
+}
+
+button{
+padding:12px 30px;
+border:none;
+border-radius:15px;
+background:#b06cff;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+#content{
+display:none;
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+#text{
+font-size:24px;
+line-height:40px;
+min-height:120px;
+}
+</style>
+
 </head>
 
 <body>
 
+<div id="flowers"></div>
+
+<div class="card" id="login">
+
+<h1 style="font-size:45px;">🔒</h1>
+
+<h2 style="margin-top:10px;">Private Website</h2>
+
+<p style="margin-top:15px;line-height:28px;">
+
+Website ini dibuat khusus untuk satu orang yang sangat berarti bagiku 💜
+
+</p>
+
+<div style="margin-top:25px;
+background:rgba(255,255,255,.15);
+padding:15px;
+border-radius:15px;">
+
+<b>💡 Petunjuk</b>
+
+<p style="margin-top:10px;font-size:15px;">
+
+Masukkan tanggal dimana cerita kita dimulai.
+
+</p>
+
+</div>
+
+<input
+id="pin"
+maxlength="4"
+placeholder="••••"
+style="letter-spacing:10px;">
+
+<br>
+
+<button onclick="checkPin()">
+🤍 Masuk
+</button>
+
+<p style="margin-top:20px;
+font-size:12px;
+opacity:.7;">
+
+Made with love, especially for you.
+
+</p>
+
+</div>
+
+<div class="card" id="content">
+
+<h1>Happy Girlfriend's Day 🤍</h1>
+
+<p id="text"></p>
+
+<audio id="bgm" controls style="width:100%;margin-top:20px;">
+<source src="music.mp3">
+</audio>
+
+</div>
+<script>
+
+const PIN = "301025"; // GANTI PIN DI SINI
+
+const words = [
+"Hai sayang 🤍",
+"",
+"Selamat Girlfriend's Day ❤️",
+"",
+"Aku punya sesuatu...",
+"",
+"Terima kasih...",
+"Karena sudah hadir di hidupku.",
+"Karena selalu berusaha memahami aku.",
+"Karena tetap bertahan sejauh ini.",
+"",
+"Mungkin hadiah ini sederhana...",
+"Tapi semuanya aku buat dengan tulus.",
+"",
+"Aku harap...",
+"Semoga kita masih punya banyak cerita yang belum selesai ditulis.",
+"",
+"Aku sayang kamu. 🤍",
+"",
+"- Alvin -"
+];
+
+function checkPin(){
+
+let input = document.getElementById("pin").value;
+
+if(input===PIN){
+
+alert("💜 Selamat datang, sayang.");
+
+document.getElementById("login").style.display="none";
+
+document.getElementById("content").style.display="block";
+
+document.getElementById("bgm").play();
+
+showWords();
+
+}else{
+
+alert("💜 Masih belum tepat...\n\nCoba ingat lagi tanggal yang paling berarti buat kita.");
+
+}
+
+}
+
+let i=0;
+
+function showWords(){
+
+if(i>=words.length) return;
+
+document.getElementById("text").innerHTML=words[i];
+
+i++;
+
+setTimeout(showWords,2500);
+
+}
+
+// bunga
+
+const flowers=document.getElementById("flowers");
+
+for(let i=0;i<30;i++){
+
+let f=document.createElement("div");
+
+f.className="flower";
+
+f.innerHTML=Math.random()>0.5?"🌸":"💜";
+
+f.style.left=Math.random()*100+"%";
+
+f.style.animationDuration=(6+Math.random()*8)+"s";
+
+f.style.fontSize=(18+Math.random()*18)+"px";
+
+flowers.appendChild(f);
+
+}
+
+</script>
+
 </body>
-
-<script src="script.js"></script>
-
 </html>
